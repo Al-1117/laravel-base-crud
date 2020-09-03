@@ -55,6 +55,7 @@ class BookController extends Controller
       // Prendo solo l'ultimo oggetto creato in modo da poterlo visualizzare
       $new_book = Book::orderBy('id', 'desc')->first();
 
+      // Reindirizzo alla view show con il nuovo libro creato
       return redirect()->route('books.show', $new_book);
 
 
@@ -80,9 +81,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
-        //
+      return view('book.edit', compact('book'));
     }
 
     /**
@@ -92,9 +93,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Book $book)
     {
-        //
+      return view('book.update');
     }
 
     /**
@@ -103,8 +104,15 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        //
+      // Elimino l'oggetto selezionato
+
+      $book->delete();
+
+
+        // Reindirizzo alla pagina principale
+      return redirect()->route('books.index');
+
     }
 }
