@@ -27,7 +27,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+      return view('book.create');
     }
 
     /**
@@ -38,7 +38,29 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // Dati inseriti dall'utente
+      $data = $request->all();
+      // Creazione del nuovo oggetto libro
+      $new_item = new Book();
+
+      // Assegnazione parametri nuovo oggetto
+      $new_item->title = $data['title'];
+      $new_item->author = $data['author'];
+      $new_item->description = $data['description'];
+      $new_item->year = $data['year'];
+
+      // Salvataggio dei dati
+      $new_item->save();
+
+      // Prendo solo l'ultimo oggetto creato in modo da poterlo visualizzare
+      $new_book = Book::orderBy('id', 'desc')->first();
+
+      return redirect()->route('books.show', $new_book);
+
+
+
+
+
     }
 
     /**
