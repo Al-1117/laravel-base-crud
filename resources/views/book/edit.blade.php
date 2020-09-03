@@ -32,7 +32,7 @@
       </li>
 
       <li>
-        <input type="submit" value="Add">
+        <input type="submit" value="Conferma modifiche">
 
       </li>
 

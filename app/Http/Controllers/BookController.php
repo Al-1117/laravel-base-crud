@@ -95,7 +95,17 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-      return view('book.update');
+      // Recupero i dati immesi dall'utente
+      $data = $request->all();
+
+
+      // Aggiorno i dati
+
+      $book->update($data);
+
+
+
+      return redirect()->route('books.show', $book);
     }
 
     /**
