@@ -8,14 +8,14 @@
     {{-- title --}}
     <li>
       <label>Title</label>
-      <input type="text" name="title">
+      <input type="text" name="title" value="{{old('title')}}">
     </li>
 
     {{-- Author --}}
 
     <li>
       <label>Author</label>
-      <input type="text" name="author">
+      <input type="text" name="author" value="{{old('author')}}">
     </li>
 
     {{-- Description --}}
@@ -27,7 +27,7 @@
     {{-- Year --}}
     <li>
       <label>Year</label>
-      <input type="text" name="year">
+      <input type="text" name="year" value="{{old('year')}}">
     </li>
 
     <li>
@@ -36,6 +36,18 @@
     </li>
 
   </ul>
+
+  <div class="errors">
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+          @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+  </div>
 
 
 

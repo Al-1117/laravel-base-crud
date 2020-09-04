@@ -15,6 +15,10 @@
 
   <a href="{{route('books.show', $book->id)}}">Visualizza ulteriori informazioni</a>
 
+  {{-- Crea --}}
+
+  <a href="{{route('books.create')}}">Crea</a>
+
   {{-- Modifica --}}
 
   <a href="{{route('books.edit', $book->id)}}">Modifica</a>

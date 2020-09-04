@@ -38,16 +38,19 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+      // Faccio la validazione dei dati
+      $request->validate($this->validationRules());
       // Dati inseriti dall'utente
       $data = $request->all();
       // Creazione del nuovo oggetto libro
       $new_item = new Book();
 
       // Assegnazione parametri nuovo oggetto
-      $new_item->title = $data['title'];
-      $new_item->author = $data['author'];
-      $new_item->description = $data['description'];
-      $new_item->year = $data['year'];
+      $new_item->fill($data);
+      // $new_item->title = $data['title'];
+      // $new_item->author = $data['author'];
+      // $new_item->description = $data['description'];
+      // $new_item->year = $data['year'];
 
       // Salvataggio dei dati
       $new_item->save();
@@ -95,9 +98,12 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+
+      // Valido i dati recuperati
+      $request->validate($this->validationRules());
+
       // Recupero i dati immesi dall'utente
       $data = $request->all();
-
 
       // Aggiorno i dati
 
@@ -124,5 +130,14 @@ class BookController extends Controller
         // Reindirizzo alla pagina principale
       return redirect()->route('books.index');
 
+    }
+
+    public function validationRules(){
+      return [
+        'title' => 'required|max:255',
+        'author' => 'required|max:255',
+        'description' => 'nullable|',
+        'year' => '|integer|min:1000|max:2020',
+      ];
     }
 }
