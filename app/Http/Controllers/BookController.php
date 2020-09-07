@@ -16,7 +16,7 @@ class BookController extends Controller
     {
       $books = Book::all();
 
-      return view('book.books', compact('books'));
+      return view('book.partials.books', compact('books'));
 
     }
 
@@ -27,7 +27,7 @@ class BookController extends Controller
      */
     public function create()
     {
-      return view('book.create');
+      return view('book.partials.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class BookController extends Controller
       $new_book = Book::orderBy('id', 'desc')->first();
 
       // Reindirizzo alla view show con il nuovo libro creato
-      return redirect()->route('books.show', $new_book);
+      return redirect()->route('books.partials.show', $new_book);
 
 
 
@@ -75,7 +75,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-      return view('book.show', compact('book'));
+      return view('book.partials.show', compact('book'));
     }
 
     /**
@@ -86,7 +86,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-      return view('book.edit', compact('book'));
+      return view('book.partials.edit', compact('book'));
     }
 
     /**
@@ -111,7 +111,7 @@ class BookController extends Controller
 
 
 
-      return redirect()->route('books.show', $book);
+      return redirect()->route('books.partials.show', $book);
     }
 
     /**
